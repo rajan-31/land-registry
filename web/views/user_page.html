@@ -31,11 +31,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/super-admin">Super-Admin</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/admin">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user">User</a>
+                        <a class="nav-link active" href="/user">User</a>
                     </li>                  
 
                 </ul>
@@ -46,20 +46,19 @@
 
     <div class="container bg-dark-cus text-white mt-3">
         
-        <h3 class="text-center display-5">Admin</h3>
+        <h3 class="text-center display-5">User</h3>
         <hr>
 
         <p class="text-center"><button id="connectMetamask" class="btn btn-info">Connect Metamask</button></p><br>
 
         <div class="mb-5">
-            <h4 class="text-light">Verify User Details</h4>
-            
+            <h4 class="text-light">New User</h4>
             <div class="row gy-3 my-2">
                 <div class="col-lg-6 col-sm-6">
-                    <input name="address-user-verify" id="address-user-verify" class="form-control" type="text" placeholder="Account Address">
+                    <input name="address-user-new" id="address-user-new" class="form-control" type="text" placeholder="Account Address">
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <select name="district-user-verify" id="district-user-verify" class="form-select">
+                    <select name="district-user-new" id="district-user-new" class="form-select">
                         <option selected>Select District</option>
                         <option value="Thane">Thane</option>
                         <option value="Raigad">Raigad</option>
@@ -67,26 +66,25 @@
                       </select>
                 </div>
                 <div class="col-12">
-                    <label for="dochash-user-verify" class="form-label">Aadhaar PDF file SHA256 Hash</label>
-                    <textarea name="dochash-user-verify" class="form-control" id="dochash-user-verify" rows="2"></textarea>
+                    <label for="dochash-user-new" class="form-label">Aadhaar PDF file SHA256 Hash</label>
+                    <textarea name="dochash-user-new" class="form-control" id="dochash-user-new" rows="2"></textarea>
                 </div>
     
                 <div class="col-auto">
-                    <button id="submit-user-verify" class="btn btn-success">Accept</button>
+                    <button id="submit-user-new" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-
         </div>
 
         <div class="mb-5">
-            <h4 class="text-light">Verify Land Details</h4>
+            <h4 class="text-light">New Land</h4>
             <div class="row gy-3 my-2">
                 <div class="col-lg-6 col-sm-6">
-                    <input name="sno-land-verify" id="sno-land-verify" class="form-control" type="text" placeholder="Servey Number">
+                    <input name="sno-land-new" id="sno-land-new" class="form-control" type="text" placeholder="Servey Number">
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <select name="district-land-verify" id="district-land-verify" class="form-select" disabled>
-                        <option selected>Select District (Disabled)</option>
+                    <select name="district-land-new" id="district-land-new" class="form-select">
+                        <option selected>Select District</option>
                         <option value="Thane">Thane</option>
                         <option value="Raigad">Raigad</option>
                         <option value="Pune">Pune</option>
@@ -94,19 +92,65 @@
                 </div>
 
                 <div class="col-12">
-                    <label for="location-land-verify" class="form-label">Location</label>
-                    <textarea name="location-land-verify" class="form-control" id="location-land-verify" rows="3"></textarea>
+                    <label for="location-land-new" class="form-label">Location</label>
+                    <textarea name="location-land-new" class="form-control" id="location-land-new" rows="3"></textarea>
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <input name="area-land-verify" id="area-land-verify" class="form-control" type="number" min="0" max="999999999" step="0.0001" placeholder="Area(m^2)">
+                    <input name="area-land-new" id="area-land-new" class="form-control" type="number" min="0" max="999999999" step="0.0001" placeholder="Area(m^2)">
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <input name="epoch-land-verify" id="epoch-land-verify" class="form-control" type="number" min="0" max="2147485547" step="1" placeholder="Purchase Epoch">
+                    <input name="epoch-land-new" id="epoch-land-new" class="form-control" type="number" min="0" max="2147485547" step="1" placeholder="Purchase Epoch">
                 </div>
     
                 <div class="col-auto">
-                    <button id="submit-land-verify" class="btn btn-success">Accept</button>
+                    <button id="submit-land-new" class="btn btn-primary">Submit</button>
                 </div>
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <h4 class="text-light">Enable Incoming Purhcase Requests for Land</h4>
+            <div class="row gy-3 my-2">
+                <div class="col-lg-6 col-sm-6">
+                    <input name="sno-land-avail" id="sno-land-avail" class="form-control" type="text" placeholder="Servey Number">
+                </div>
+
+                <div class="col-auto">
+                    <button id="submit-land-avail" class="btn btn-primary">Submit</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <h4 class="text-light">Disable Incoming Purhcase Requests for Land</h4>
+            <div class="row gy-3 my-2">
+                <div class="col-lg-6 col-sm-6">
+                    <input name="sno-land-disavail" id="sno-land-disavail" class="form-control" type="text" placeholder="Servey Number">
+                </div>
+
+                <div class="col-auto">
+                    <button id="submit-land-disavail" class="btn btn-primary">Submit</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <h4 class="text-light">Request to Buy Land</h4>
+            <div class="row gy-3 my-2">
+                <div class="col-lg-6 col-sm-6">
+                    <input name="sno-land-buy" id="sno-land-buy" class="form-control" type="text" placeholder="Servey Number">
+                </div>
+
+                <div class="col-lg-6 col-sm-6">
+                    <input name="price-land-new" id="area-land-new" class="form-control" type="number" min="0" max="9999999999999" step="1" placeholder="Proposed Price">
+                </div>
+
+                <div class="col-auto">
+                    <button id="submit-land-buy" class="btn btn-primary">Submit</button>
+                </div>
+                
             </div>
         </div>
 
@@ -114,11 +158,25 @@
             <h4 class="text-light">Approve Sell of Land</h4>
             <div class="row gy-3 my-2">
                 <div class="col-lg-6 col-sm-6">
-                    <input name="sno-land-appsell-admin" id="sno-land-appsell-admin" class="form-control" type="text" placeholder="Servey Number">
+                    <input name="sno-land-appsell" id="sno-land-appsell" class="form-control" type="text" placeholder="Servey Number">
                 </div>
 
                 <div class="col-auto">
-                    <button id="submit-land-appsell-admin" class="btn btn-success">Accept</button>
+                    <button id="submit-land-appsell" class="btn btn-primary">Submit</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <h4 class="text-light">Confirm Sell of Land</h4>
+            <div class="row gy-3 my-2">
+                <div class="col-lg-6 col-sm-6">
+                    <input name="sno-land-consell" id="sno-land-consell" class="form-control" type="text" placeholder="Servey Number">
+                </div>
+
+                <div class="col-auto">
+                    <button id="submit-land-consell" class="btn btn-primary">Submit</button>
                 </div>
                 
             </div>
@@ -129,7 +187,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha512-pax4MlgXjHEPfCwcJLQhigY7+N8rt6bVvWLFyUMuxShv170X53TRzGPmPkZmGBhk+jikR8WBM4yl7A9WMHHqvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js" integrity="sha512-jRzb6jM5wynT5UHyMW2+SD+yLsYPEU5uftImpzOcVTdu1J7VsynVmiuFTsitsoL5PJVQi+OtWbrpWq/I+kkF4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js.web3.min.js"></script>
+    <script src="js/web3.min.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

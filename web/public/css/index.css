@@ -1,4 +1,13 @@
+html {
+    background-color: #0b0c0d;
+}
+
 body {
-    margin: 20px;
-    padding: 10px;
+    height: 100%;
+    width: 100%;
+    background-color: #0b0c0d !important;
+}
+
+.bg-dark-cus {
+    background-color: #0b0c0d;
 }
