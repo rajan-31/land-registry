@@ -1,4 +1,5 @@
 web/node_modules/*
+truffle/build/contracts/*
 .env
 
 !Truffle\test\.gitkeep

@@ -7,7 +7,7 @@
     
     <link rel="shortcut icon" href="fevicon.png" type="image/x-icon">
 
-    <title>Home</title>
+    <title>Admin Page</title>
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="/super-admin">Super-Admin</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/admin">Admin</a>
+                        <a class="nav-link active" href="/admin">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user">User</a>
@@ -45,83 +45,227 @@
     </nav>
 
     <div class="container bg-dark-cus text-white mt-3">
-        
+
         <h3 class="text-center display-5">Admin</h3>
         <hr>
 
         <p class="text-center"><button id="connectMetamask" class="btn btn-info">Connect Metamask</button></p><br>
 
-        <div class="mb-5">
-            <h4 class="text-light">Verify User Details</h4>
-            
-            <div class="row gy-3 my-2">
-                <div class="col-lg-6 col-sm-6">
-                    <input name="address-user-verify" id="address-user-verify" class="form-control" type="text" placeholder="Account Address">
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <select name="district-user-verify" id="district-user-verify" class="form-select">
-                        <option selected>Select District</option>
-                        <option value="Thane">Thane</option>
-                        <option value="Raigad">Raigad</option>
-                        <option value="Pune">Pune</option>
-                      </select>
-                </div>
-                <div class="col-12">
-                    <label for="dochash-user-verify" class="form-label">Aadhaar PDF file SHA256 Hash</label>
-                    <textarea name="dochash-user-verify" class="form-control" id="dochash-user-verify" rows="2"></textarea>
-                </div>
-    
-                <div class="col-auto">
-                    <button id="submit-user-verify" class="btn btn-success">Accept</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mb-5">
-            <h4 class="text-light">Verify Land Details</h4>
-            <div class="row gy-3 my-2">
-                <div class="col-lg-6 col-sm-6">
-                    <input name="sno-land-verify" id="sno-land-verify" class="form-control" type="text" placeholder="Servey Number">
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <select name="district-land-verify" id="district-land-verify" class="form-select" disabled>
-                        <option selected>Select District (Disabled)</option>
-                        <option value="Thane">Thane</option>
-                        <option value="Raigad">Raigad</option>
-                        <option value="Pune">Pune</option>
-                      </select>
-                </div>
-
-                <div class="col-12">
-                    <label for="location-land-verify" class="form-label">Location</label>
-                    <textarea name="location-land-verify" class="form-control" id="location-land-verify" rows="3"></textarea>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <input name="area-land-verify" id="area-land-verify" class="form-control" type="number" min="0" max="999999999" step="0.0001" placeholder="Area(m^2)">
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <input name="epoch-land-verify" id="epoch-land-verify" class="form-control" type="number" min="0" max="2147485547" step="1" placeholder="Purchase Epoch">
-                </div>
-    
-                <div class="col-auto">
-                    <button id="submit-land-verify" class="btn btn-success">Accept</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-5">
-            <h4 class="text-light">Approve Sell of Land</h4>
-            <div class="row gy-3 my-2">
-                <div class="col-lg-6 col-sm-6">
-                    <input name="sno-land-appsell-admin" id="sno-land-appsell-admin" class="form-control" type="text" placeholder="Servey Number">
-                </div>
-
-                <div class="col-auto">
-                    <button id="submit-land-appsell-admin" class="btn btn-success">Accept</button>
-                </div>
+        <div class="border border-primary rounded p-3 mb-5">
+            <div class="">
+                <h4 class="text-light">Verify User Details</h4>
                 
+                <div class="row gy-3 my-2">
+                    <div class="col-lg-6 col-sm-6">
+                        <input name="address-user-verify" id="address-user-verify" class="form-control" type="text" placeholder="Account Address">
+                    </div>
+    
+                    <div class="col-lg-6 col-sm-6">
+                        <input name="name-user-verify" id="name-user-verify" class="form-control" type="text" placeholder="Full Name">
+                    </div>
+    
+                    <div class="col-12">
+                        <select name="district-user-verify" id="district-user-verify" class="form-select">
+                            <option selected>Select District</option>
+                            <option value="Thane">Thane</option>
+                            <option value="Raigad">Raigad</option>
+                            <option value="Pune">Pune</option>
+                          </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="dochash-user-verify" class="form-label">Aadhaar PDF file SHA256 Hash</label>
+                        <textarea name="dochash-user-verify" class="form-control" id="dochash-user-verify" rows="2"></textarea>
+                    </div>
+        
+                    <div class="text-center">
+                        <button id="submit-user-verify-accept" class="submit-btn-user-verify btn btn-success">Accept</button>
+                        <button id="submit-user-verify-block" class="submit-btn-user-verify btn btn-danger">&nbsp;Reject&nbsp;</button>
+                    </div>
+                </div>
+    
             </div>
+            
+            <!-- <h5 class="text-light text-center">New Users</h5>
+    
+            <div class="table-scroll" id="admin-user-data-div">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                          <th scope="col">Address</th>
+                          <th scope="col">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                          <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                          <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                      </tbody>
+                  </table>
+
+            </div> -->
+        </div>
+        
+        <div class="border border-light rounded p-3 mb-5">
+            <div class="">
+                <h4 class="text-light">Verify Land Details</h4>
+                <div class="row gy-3 my-2">
+                    <div class="col-12">
+                        <input name="sno-land-verify" id="sno-land-verify" class="form-control" type="text" placeholder="Servey Number">
+                    </div>
+                    <div class="col-12">
+                        <label for="location-land-verify" class="form-label">Location</label>
+                        <textarea name="location-land-verify" class="form-control" id="location-land-verify" rows="3"></textarea>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <input name="area-land-verify" id="area-land-verify" class="form-control" type="number" min="0" max="999999999" step="0.0001" placeholder="Area(m^2)">
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <input name="epoch-land-verify" id="epoch-land-verify" class="form-control" type="number" min="0" max="2147485547" step="1" placeholder="Purchase Epoch">
+                    </div>
+        
+                    <div class="text-center">
+                        <button id="submit-land-verify-accept" class="submit-btn-land-verify btn btn-success">Accept</button>
+                        <button id="submit-land-verify-block" class="submit-btn-land-verify btn btn-danger">&nbsp;Reject&nbsp;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <h5 class="text-light text-center">New Lands</h5>
+    
+            <div class="table-scroll" id="admin-land-data-div">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                          <th scope="col">Address</th>
+                          <th scope="col">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                          <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                          <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                      </tbody>
+                  </table>
+            </div> -->
+        </div>
+
+        <div class="border border-warning rounded p-3 mb-5">
+            <div class="">
+                <h4 class="text-light">Approve Sell of Land</h4>
+                <div class="row gy-3 my-2">
+                    <div class="col-lg-6 col-sm-6">
+                        <input name="sno-land-appsell-admin" id="sno-land-appsell-admin" class="form-control" type="text" placeholder="Servey Number">
+                    </div>
+    
+                    <div class="col-auto">
+                        <button id="submit-land-appsell-admin" class="btn btn-success">Accept</button>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- <div class="table-scroll" id="admin-sell-data-div">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                          <th scope="col">Address</th>
+                          <th scope="col">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                          <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                          <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                          </tr>
+                      </tbody>
+                  </table>
+            </div> -->
         </div>
 
     </div>
@@ -129,7 +273,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha512-pax4MlgXjHEPfCwcJLQhigY7+N8rt6bVvWLFyUMuxShv170X53TRzGPmPkZmGBhk+jikR8WBM4yl7A9WMHHqvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js" integrity="sha512-jRzb6jM5wynT5UHyMW2+SD+yLsYPEU5uftImpzOcVTdu1J7VsynVmiuFTsitsoL5PJVQi+OtWbrpWq/I+kkF4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js.web3.min.js"></script>
+    
     <script src="js/index.js"></script>
 </body>
 </html>

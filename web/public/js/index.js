@@ -1,486 +1,329 @@
 let contract;
 
-$(document).ready(function() {
-    const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
+$(document).ready(function () {
+	const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 
-    // contract address
-    const address = '0x9D4d04612B078A676CAa740a33bd7f93D69642B3'
-    const abi = [
-        {
-            "inputs": [],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "name": "admins",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "name",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "district",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "name": "allSells",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "serveyNo",
-                    "type": "string"
-                },
-                {
-                    "internalType": "address",
-                    "name": "owner",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "buyer",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "price",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "sellerApproval",
-                    "type": "bool"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "adminApproval",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                }
-            ],
-            "name": "approveAdmin",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                }
-            ],
-            "name": "approveSell",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                }
-            ],
-            "name": "cancelAvailable",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                }
-            ],
-            "name": "confirmSell",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_address",
-                    "type": "address"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_name",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_district",
-                    "type": "string"
-                }
-            ],
-            "name": "createModifyAdmin",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "bytes32",
-                    "name": "",
-                    "type": "bytes32"
-                }
-            ],
-            "name": "lands",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "serveyNo",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "location",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "area",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "purchaseEpoch",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address",
-                    "name": "owner",
-                    "type": "address"
-                },
-                {
-                    "internalType": "string",
-                    "name": "district",
-                    "type": "string"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "isVerified",
-                    "type": "bool"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "availableForSale",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                }
-            ],
-            "name": "makeAvailable",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_location",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_area",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_purchaseEpoch",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "_isVerified",
-                    "type": "bool"
-                }
-            ],
-            "name": "modifyLand",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_address",
-                    "type": "address"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_name",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_docHash",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_district",
-                    "type": "string"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "_isVerified",
-                    "type": "bool"
-                }
-            ],
-            "name": "modifyUser",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_location",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_area",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_purchaseEpoch",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_district",
-                    "type": "string"
-                }
-            ],
-            "name": "regLand",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_name",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_docHash",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_district",
-                    "type": "string"
-                }
-            ],
-            "name": "regUser",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_serveyNo",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_price",
-                    "type": "uint256"
-                }
-            ],
-            "name": "requestToBuy",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "source",
-                    "type": "string"
-                }
-            ],
-            "name": "stringToBytes32",
-            "outputs": [
-                {
-                    "internalType": "bytes32",
-                    "name": "result",
-                    "type": "bytes32"
-                }
-            ],
-            "stateMutability": "pure",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "name": "users",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "name",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "docHash",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "district",
-                    "type": "string"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "isVerified",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        }
-    ]
+	$.get("/contract/contract_data.json", function (data, status) {
+		if (status === "success") {
+			const contract_abi = data.contract_abi;
+			const contract_address = data.contract_address;
 
-    contract = new web3.eth.Contract(abi, address);
+			contract = new web3.eth.Contract(contract_abi, contract_address);
 
-    // check metamask connection
-    web3.eth.getAccounts().then(function(accounts) {
-        if (!ethereum.isMetaMask || accounts.length < 1) {
-            ethereum.request({
-                method: 'eth_requestAccounts'
-            });
-        } else {
-            $('#connectMetamask').html("Metamask Is Connected")
-            $('#connectMetamask').prop('disabled', true);
-        }
-    });
+			// check metamask connection
+			web3.eth.getAccounts().then(function (accounts) {
+				if (!ethereum.isMetaMask || accounts.length < 1) {
+					ethereum.request({
+						method: 'eth_requestAccounts'
+					});
+				} else {
+					$('#connectMetamask').html("Metamask Is Connected")
+					$('#connectMetamask').prop('disabled', true);
+				}
+			});
 
-    // connect metamask
-    $('#connectMetamask').click(function() {
-        if (!ethereum.isMetaMask) {
-            ethereum.request({
-                method: 'eth_requestAccounts'
-            });
-        } else {
-            alert('Metamask Already connected...');
-            $(this).prop('disabled', true);
-        }
-    });
+			// connect metamask
+			$('#connectMetamask').click(function () {
+				if (!ethereum.isMetaMask) {
+					ethereum.request({
+						method: 'eth_requestAccounts'
+					});
+				} else {
+					alert('Metamask Already connected...');
+					$(this).prop('disabled', true);
+				}
+			});
 
-    // reload window on account change
-    window.ethereum.on('accountsChanged', function(accounts) {
-        window.location.reload();
-    })
+			// reload window on account change
+			// window.ethereum.on('accountsChanged', function (accounts) {
+			// 	window.location.reload();
+			// })
 
-    // add campaign
-    /* $('#create-new').click(function() {
-        const name = $('#name').val();
-        const targetAmt = $('#target-amt').val() //web3.utils.toWei($('#target-amt').val(), 'ether');
-        const duration = parseInt($('#duration').val());
 
-        if (name && targetAmt > 0 && duration > 0) {
-            web3.eth.getAccounts().then(function(accounts) {
-                const acc = accounts[0];
+			/************************
+			****** Super Admin ******
+			*************************/
 
-                contract.methods.newCF(name, targetAmt, duration)
-                    .send({
-                        from: acc
-                    })
-                    .then(function(result) {
-                        alert("Campaign Creted Successfully, please refresh the page.");
-                        window.location.reload();
-                    }).catch(function(err) {
-                        console.log(err)
-                    });
+			// create admin
+			$('#submit-admin-new').click(function () {
+				const address = $('#address-admin-new').val();
+				const name = $('#name-admin-new').val();
+				const district = $('#district-admin-new').val();
 
-            });
+				if (address && name && district) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
 
-        }
-    }); */
+						contract.methods.createModifyAdmin(address, name, district)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Admin Created/Modified Successfully.");
+							}).catch(function (err) {
+								console.log(err)
+							});
 
-    // register user
-    $('#submit-user-new').click(function() {
-        
-    });
+					});
+				} else {
+					alert("New Admin: Invalid Admin Data");
+				}
+			});
+
+			/************************
+			********* Admin *********
+			*************************/
+
+			$('.submit-btn-user-verify').click(function () {
+				const address = $('#address-user-verify').val();
+				const name = $('#name-user-verify').val();
+				const dochash = $('#dochash-user-verify').val();
+				const district = $('#district-user-verify').val();
+
+				const isVerified = $(this).attr('id') === "submit-user-verify-accept" ? true : false;
+
+				if (address && name && district && dochash) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.modifyUser(address, name, dochash, district, isVerified)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("User Verified Successfully.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+					});
+				}
+
+				else {
+					alert("Verify User: Invalid User Data");
+				}
+			});
+
+			// verify land
+			$('.submit-btn-land-verify').click(function () {
+				const serveyNo = $("#sno-land-verify").val();
+				const location = $("#location-land-verify").val();
+				const area = $("#area-land-verify").val();
+				const purchaseEpoch = $("#epoch-land-verify").val();
+
+				const isVerified = $(this).attr('id') === "submit-land-verify-accept" ? true : false;
+
+				if (serveyNo && location && area > 0 && purchaseEpoch > 0) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.modifyLand(serveyNo, location, area, purchaseEpoch, isVerified)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Land Verified Successfully.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+
+					});
+				} else {
+					alert("Verify Land: Invalid Land Data");
+				}
+			});
+
+			// approve sell
+			$('#submit-land-appsell-admin').click(function () {
+				const serveyNo = $("#sno-land-appsell-admin").val();
+
+				if (serveyNo) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.approveAdmin(serveyNo)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Admin Land Approve Sell Request Successfull.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+					});
+				} else {
+					alert("Admin Land Approve Sell: Invalid Land Data");
+				}
+			});
+
+
+			/************************
+			********* User **********
+			*************************/
+
+			// register user
+			$('#submit-user-new').click(function () {
+				const name = $('#name-user-new').val();
+				const district = $('#district-user-new').val();
+				const dochash = $('#dochash-user-new').val();
+				// sample 29001015306bed5c090106e842a37a5f10265bca4e9fb373fe4468e268cbb88e
+
+				if (name && district && dochash) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.regUser(name, dochash, district)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("User Registered Successfully.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+
+					});
+				} else {
+					alert("New User: Invalid User Data");
+				}
+			});
+
+			// register land
+			$('#submit-land-new').click(function () {
+				const serveyNo = $("#sno-land-new").val();
+				const location = $("#location-land-new").val();
+				const area = $("#area-land-new").val();
+				const purchaseEpoch = $("#epoch-land-new").val();
+				const district = $("#district-land-new").val();
+
+				if (serveyNo && location && area > 0 && purchaseEpoch > 0 && district) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.regLand(serveyNo, location, area, purchaseEpoch, district)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Land Registered Successfully.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+
+					});
+				} else {
+					alert("New Land: Invalid Land Data");
+				}
+			});
+
+			// set land availability status
+			$('.submit-btn-land-avail').click(function () {
+				const status = $(this).attr('id') === "submit-land-avail-avail" ? true : false;
+				const serveyNo = $("#sno-land-avail").val();
+
+				if (serveyNo) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						if (status) {
+							contract.methods.makeAvailable(serveyNo)
+								.send({
+									from: acc
+								})
+								.then(function (result) {
+									alert("Land Availability staus - True");
+								}).catch(function (err) {
+									console.log(err)
+								});
+						} else {
+							contract.methods.cancelAvailable(serveyNo)
+								.send({
+									from: acc
+								})
+								.then(function (result) {
+									alert("Land Availability staus - False");
+								}).catch(function (err) {
+									console.log(err)
+								});
+						}
+
+					});
+				} else {
+					alert("Land Availability: Invalid Land Data");
+				}
+			});
+
+			// request to buy
+			$('#submit-land-buy').click(function () {
+				const serveyNo = $("#sno-land-buy").val();
+				const price = $("#price-land-buy").val();
+
+				if (serveyNo && price > 0) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.requestToBuy(serveyNo, price)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Land Buy Request Successfull.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+					});
+				} else {
+					alert("Land Buy: Invalid Land Data");
+				}
+			});
+
+			// approve sell
+			$('#submit-land-appsell').click(function () {
+				const serveyNo = $("#sno-land-appsell").val();
+
+				if (serveyNo) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.approveSell(serveyNo)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Land Approve Sell Request Successfull.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+					});
+				} else {
+					alert("Land Approve Sell: Invalid Land Data");
+				}
+			});
+
+			// confirm sell
+			$('#submit-land-consell').click(function () {
+				const serveyNo = $("#sno-land-consell").val();
+
+				if (serveyNo) {
+					web3.eth.getAccounts().then(function (accounts) {
+						const acc = accounts[0];
+
+						contract.methods.confirmSell(serveyNo)
+							.send({
+								from: acc
+							})
+							.then(function (result) {
+								alert("Land Confirm Sell Request Successfull.");
+							}).catch(function (err) {
+								console.log(err)
+							});
+					});
+				} else {
+					alert("Land Confirm Sell: Invalid Land Data");
+				}
+			});
+		} else {
+			alert("Error: not able to retrieve abi and contract address.")
+		}
+	});
 
 });

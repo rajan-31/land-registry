@@ -1,0 +1,1 @@
+ganache-cli --chainId 1338 --networkId 5777 --db "C:\Users\Rajan\Desktop\_D\zDBs_and_Storages\Ganache1\" --acctKeys "C:\Users\Rajan\Desktop\_D\zDBs_and_Storages\Ganache1\accounts.json" --account "0x9a8111cf559d38b4d6b7b91a79d1110f3f41fed15e2c7bb72923e27bcbeb0297, 100000000000000000000"

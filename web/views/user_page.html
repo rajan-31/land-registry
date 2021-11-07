@@ -7,7 +7,7 @@
     
     <link rel="shortcut icon" href="fevicon.png" type="image/x-icon">
 
-    <title>Home</title>
+    <title>User Page</title>
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -55,7 +55,7 @@
             <h4 class="text-light">New User</h4>
             <div class="row gy-3 my-2">
                 <div class="col-lg-6 col-sm-6">
-                    <input name="address-user-new" id="address-user-new" class="form-control" type="text" placeholder="Account Address">
+                    <input name="name-user-new" id="name-user-new" class="form-control" type="text" placeholder="Full Name">
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <select name="district-user-new" id="district-user-new" class="form-select">
@@ -70,7 +70,7 @@
                     <textarea name="dochash-user-new" class="form-control" id="dochash-user-new" rows="2"></textarea>
                 </div>
     
-                <div class="col-auto">
+                <div class="text-center">
                     <button id="submit-user-new" class="btn btn-primary">Submit</button>
                 </div>
             </div>
@@ -102,35 +102,22 @@
                     <input name="epoch-land-new" id="epoch-land-new" class="form-control" type="number" min="0" max="2147485547" step="1" placeholder="Purchase Epoch">
                 </div>
     
-                <div class="col-auto">
+                <div class="text-center">
                     <button id="submit-land-new" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
 
         <div class="mb-5">
-            <h4 class="text-light">Enable Incoming Purhcase Requests for Land</h4>
+            <h4 class="text-light">Set Land Availability Status</h4>
             <div class="row gy-3 my-2">
                 <div class="col-lg-6 col-sm-6">
                     <input name="sno-land-avail" id="sno-land-avail" class="form-control" type="text" placeholder="Servey Number">
                 </div>
 
                 <div class="col-auto">
-                    <button id="submit-land-avail" class="btn btn-primary">Submit</button>
-                </div>
-                
-            </div>
-        </div>
-
-        <div class="mb-5">
-            <h4 class="text-light">Disable Incoming Purhcase Requests for Land</h4>
-            <div class="row gy-3 my-2">
-                <div class="col-lg-6 col-sm-6">
-                    <input name="sno-land-disavail" id="sno-land-disavail" class="form-control" type="text" placeholder="Servey Number">
-                </div>
-
-                <div class="col-auto">
-                    <button id="submit-land-disavail" class="btn btn-primary">Submit</button>
+                    <button id="submit-land-avail-avail" class="submit-btn-land-avail btn btn-primary"> &nbsp;&nbsp; Available &nbsp;&nbsp; </button>
+                    <button id="submit-land-avail-notavail" class="submit-btn-land-avail btn btn-danger">Not Available</button>
                 </div>
                 
             </div>
@@ -144,10 +131,10 @@
                 </div>
 
                 <div class="col-lg-6 col-sm-6">
-                    <input name="price-land-new" id="area-land-new" class="form-control" type="number" min="0" max="9999999999999" step="1" placeholder="Proposed Price">
+                    <input name="price-land-buy" id="price-land-buy" class="form-control" type="number" min="1" max="99999999999" step="1" placeholder="Proposed Price">
                 </div>
 
-                <div class="col-auto">
+                <div class="text-center">
                     <button id="submit-land-buy" class="btn btn-primary">Submit</button>
                 </div>
                 
@@ -187,7 +174,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha512-pax4MlgXjHEPfCwcJLQhigY7+N8rt6bVvWLFyUMuxShv170X53TRzGPmPkZmGBhk+jikR8WBM4yl7A9WMHHqvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js" integrity="sha512-jRzb6jM5wynT5UHyMW2+SD+yLsYPEU5uftImpzOcVTdu1J7VsynVmiuFTsitsoL5PJVQi+OtWbrpWq/I+kkF4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/web3.min.js"></script>
+    
     <script src="js/index.js"></script>
 </body>
 </html>

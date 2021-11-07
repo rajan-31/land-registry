@@ -11,3 +11,9 @@ body {
 .bg-dark-cus {
     background-color: #0b0c0d;
 }
+
+.table-scroll {
+    max-height: 300px;
+    overflow: auto;
+    /* padding: 10px; */
+}

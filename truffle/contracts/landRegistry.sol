@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+    // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 < 0.9.0;
 contract landRecords {
     struct Admin {
@@ -37,7 +37,14 @@ contract landRecords {
     // all districtwise sells
     mapping(string => LandSell[]) public allSells;
     
-    address superAdmin;
+    // public for demo purpose only 
+    address public superAdmin;
+
+    // events
+    event RegUser(
+        address indexed _address,
+        string _district
+    );
     
     constructor() {
         // store address of superAdmin when contract is deployed
@@ -69,6 +76,8 @@ contract landRecords {
         // if account is not verified then only create account/ change data
         require(temp.isVerified == false, "User Already Exists!");
         users[msg.sender] = User(_name, _docHash, _district, false);
+
+        emit RegUser(msg.sender, _district);
     }
     
     function modifyUser(address _address, string memory _name, string memory _docHash, string memory _district, bool _isVerified) public {
