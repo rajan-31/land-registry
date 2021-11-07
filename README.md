@@ -1,10 +1,10 @@
 ### Truffle Steps
 
-- ```truffle init```
+- `truffle init`
 - Add Contracts to "contracts" folder
-- ```truffle compile```
+- `truffle compile`
 - Add/Create  migrations file
-- ```truffle migrate --network ganache```
+- `truffle migrate --network ganache`
 
 ---
 ####ROUGH####
@@ -15,9 +15,9 @@ truffle compile
 truffle migrate --network ganache
 ```
 
-## Change abi at 3 places: index.js, test.js, .env
-## remove public from superAdmin in solidity contarct
-## change network id in script (5777)
+### Change abi at 3 places: index.js, test.js, .env
+### remove public from superAdmin in solidity contarct
+### change network id in script (5777)
 
 ---
 
@@ -28,21 +28,28 @@ truffle migrate --network ganache
 cd truffle
 
 set correct network parameters in "truffle-config.js"
+
 set deployer address in migration file for deploying contracts
 
 run run-ganache.ps1 (it will start ganache test network)
+
 run dep-mig-copy.ps1 (it will deploy the contract)
 
-cd web
+\
+\
+`cd web`
 
 *if you don't want to modify any file in web folder
-node app.js ((it will copy the abi and contract address in public contract details file))
 
+`node app.js` (it will copy the new abi and new contract address in public/contract_details.json file)
+
+\
 *if you want to modify files in web folder
-npm run dev
+
+`npm run dev`
 
 ### After contract update
 
-cd web
-restart web server (it will copy the new abi and new contract address in public contract details file)
-npm run dev OR node app.js
+`cd web`
+
+restart web server (it will copy the new abi and new contract address in public/contract_details.json file)
