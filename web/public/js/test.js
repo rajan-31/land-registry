@@ -85,7 +85,7 @@ $(document).ready(function () {
 
           contract.methods.users(acc).call()
             .then(function (result) {
-              console.log("name:" + result.name + "\n" + "docHash:" + result.docHash + "\n" + "district:" + result.district + "\n" + "isVerified:" + result.isVerified);
+              console.log("name:" + result.name + "\n" + "AadhaarNumber:" + result.docHash + "\n" + "district:" + result.district + "\n" + "isVerified:" + result.isVerified);
             }).catch(function (err) {
               console.log(err)
             });

@@ -1,0 +1,52 @@
+geth command 
+
+geth --rinkeby --rpc --rpcapi="eth,net,web3,personal,txpool" --syncmode=light --allow-insecure-unlock
+
+geth attach http://127.0.0.1:8545
+
+personal.listAccounts   to get accounts
+
+net.peerCount 		to count peers
+
+personal.newAccount("password")
+
+eth.getBalance("address")
+
+
+
+Solidity compiler 
+
+solcjs filename.sol
+
+To get abi 
+solcjs --abi fileName.sol 
+
+
+
+Truffle
+
+truffle init 			To create a new project
+truffle unbox <box-name>	Dwnld demo project
+truffle unbox metacoin 		Eth project of crypto coin
+truffle compile  		Compile Contracts
+truffle develop			Start test ethereum network
+truffle test			Run unit tests
+truffle migrate 		Deploy smart contracts
+
+
+
+contracts/contractname1.sol		Contracts in solidity
+contracts/contractname2.sol
+
+migration/1_initial_deploy.js		To deploy contracts
+migration/2_deploy_contract.js
+
+test/TestContract.sol			Test contracts in sol or
+test/TestContract.js
+
+truffle.js   or				Project related settings
+truffle-config.js
+
+
+
+command   truffle migrate --network ganache

@@ -70,7 +70,7 @@ app.get('/test', (req, res) => {
 contract.events.RegUser({
     fromBlock: 'latest'
 })  .on("connected", (subscriptionId) => {
-        console.log("RegUser event subscriptionId: " + subscriptionId);
+        // console.log("RegUser event subscriptionId: " + subscriptionId);
     })
     .on('data', (event) => {
         const _data = event.returnValues;
@@ -80,14 +80,15 @@ contract.events.RegUser({
         const _district = _data._district;
 
         const _blockNumber = event.blockNumber;
+        const _isVerified = false;
 
-        User.findOneAndUpdate({address: _address}, {district: _district, blockNumber: _blockNumber}, {upsert: true}, (err, user) => {
+        User.findOneAndUpdate({address: _address}, {district: _district, blockNumber: _blockNumber, isVerified: _isVerified}, {upsert: true}, (err, user) => {
             if(err) {
                 console.log(err);
             } else {
                 console.log(user);
             }
-        })
+        });
     })
     // .on('changed', (event) => {
     //     // remove event from local database
@@ -101,14 +102,15 @@ contract.events.RegUser({
 **/
 
 app.get('/api/users/:district', (req, res) => {
-    User.find({}, (err, users) => {
+    User.find({district: req.params.district, isVerified: false}, {_id: 0, address: 1}, (err, users) => {
+        
         if(err) {
             console.log(err);
             req.status(500).send("Something went wrong");
         } else {
-            req.json(users);
+            res.json(users);
         }
-    });
+    }).sort({blockNumber: 1}).lean();
 });
 
 app.listen(port, () => {
